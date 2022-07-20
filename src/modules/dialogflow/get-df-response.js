@@ -25,13 +25,7 @@ const CREDENTIAL = {
   "client_x509_cert_url": process.env.CLIENT_X509_CERT_URL
 };
 
-try {
-	const CREDENTIALS = jsonParse(CREDENTIAL)
-} catch {
-	error = true
-	log('redBright', 'Erro')('Credenciais do Dialogflow faltando')
-	log('magentaBright', 'Erro')('Inclua suas credenciais do Dialogflow na variável de ambiente')
-}
+const CREDENTIALS = jsonParse(CREDENTIAL)
 
 /**
  * Faz uma requisição para o Dialogflow
