@@ -12,7 +12,7 @@ const sessions = process.env.MONGO_DB
 	: new LocalSessions(path.resolve(__dirname, './df-sessions.json'))
 
 // Checa possíveis erros
-const CREDENTIAL = '{
+const CREDENTIAL = {
   "type": process.env.TYPE,
   "project_id": process.env.PROJECT_ID,
   "private_key_id": process.env.PRIVATE_KEY_ID,
@@ -23,13 +23,14 @@ const CREDENTIAL = '{
   "token_uri": process.env.TOKEN_URI,
   "auth_provider_x509_cert_url": process.env.AUTH_PROVIDER_X509_CERT_URL,
   "client_x509_cert_url": process.env.CLIENT_X509_CERT_URL
-}';
+};
+
 try {
 	const CREDENTIALS = jsonParse(CREDENTIAL)
 } catch {
 	error = true
 	log('redBright', 'Erro')('Credenciais do Dialogflow faltando')
-	log('magentaBright', 'Erro')('Inclua suas credenciais do Dialogflow na variável de ambiente GCLOUD_CREDENTIALS')
+	log('magentaBright', 'Erro')('Inclua suas credenciais do Dialogflow na variável de ambiente')
 }
 
 /**
