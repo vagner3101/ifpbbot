@@ -15,13 +15,8 @@ const CREDENTIAL = {
   "auth_provider_x509_cert_url": process.env.AUTH_PROVIDER_X509_CERT_URL,
   "client_x509_cert_url": process.env.CLIENT_X509_CERT_URL
 };
-try {
-	const CREDENTIALS = jsonParse(CREDENTIAL)
-} catch {
-	error = true
-	log('redBright', 'Erro')('Credenciais do Dialogflow faltando')
-	log('magentaBright', 'Erro')('Inclua suas credenciais do Dialogflow na variável de ambiente GCLOUD_CREDENTIALS')
-}
+
+const CREDENTIALS = jsonParse(CREDENTIAL)
 
 /**
  * Atualiza os contextos expirados no Dialogflow
