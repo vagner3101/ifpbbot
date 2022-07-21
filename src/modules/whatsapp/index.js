@@ -66,6 +66,12 @@ async function connectToWhatsApp() {
 			// Impede de responder suas próprias mensagens (participant significa que foi de um grupo)
 			if (!msg.participant && msg.fromMe) continue
 
+			// Impede de receber mensagens de status
+			if (msg.key && msg.key.remoteJid == 'status@broadcast') continue
+			
+			// Impede de receber mensagens de grupos
+			if (msg.key.remoteJid.endsWith('@g.us')) continue
+
 			// Texto da mensagem
 			const msgText = msg?.message?.conversation || // Mensagem normal
 				msg?.message?.templateButtonReplyMessage?.selectedDisplayText || // Mensagem do botão de template
